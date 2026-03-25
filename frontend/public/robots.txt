@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.devraj-express.com/sitemap.xml
+
+# Disallow admin routes
+Disallow: /admin/
+Disallow: /admin/*

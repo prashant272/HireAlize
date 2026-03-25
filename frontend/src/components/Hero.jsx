@@ -1,0 +1,209 @@
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, Send, Star, ShieldCheck, Users, Zap, Upload } from 'lucide-react';
+
+const Hero = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [userType, setUserType] = useState('employer');
+
+  const slides = [
+    {
+      image: '/hero1.jpg',
+      // fallback: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80'
+    },
+    {
+      image: '/hero2.avif',
+      // fallback: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80'
+    },
+    {
+      image: '/hero3.webp',
+    //   fallback: 'https://images.unsplash.com/photo-1522071823991-b9671f99c1c5?auto=format&fit=crop&q=80'
+    },
+   {
+     image: '/hero4.webp',
+      // fallback: 'https://images.unsplash.com/photo-1522071823991-b9671f99c1c5?auto=format&fit=crop&q=80'
+   }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  return (
+    <section className="relative min-h-screen w-full flex items-center overflow-hidden bg-[#020617] selection:bg-orange-500 selection:text-white leading-tight">
+
+      {/* Background Layer (Elite Transition) */}
+      <div className="absolute inset-0 z-0">
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${index === currentSlide ? 'opacity-40 scale-105' : 'opacity-0 scale-100'
+              } transition-transform duration-[8s]`}
+          >
+            <img
+              src={slide.image}
+              alt={`Hero Slide ${index + 1}`}
+              className="w-full h-full object-cover object-[center_30%] lg:object-center transition-transform duration-[2000ms]"
+              onError={(e) => { if (slide.fallback) e.target.src = slide.fallback; }}
+            />
+            {/* Dynamic Overlays: Clearer Background for Glassmorphism */}
+            <div className="absolute inset-0 bg-[#020617]/50 lg:bg-[#020617]/20 backdrop-blur-[1px]"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#020617] via-transparent to-transparent opacity-80"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-60"></div>
+          </div>
+        ))}
+        {/* Decorative Orbs: Optimized for Professional Feel */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent z-10"></div>
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-white/[0.03] rounded-full blur-[140px] pointer-events-none animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-orange-600/5 rounded-full blur-[140px] pointer-events-none animate-pulse-slow"></div>
+      </div>
+
+      <div className="container mx-auto px-4 md:px-6 relative z-10 pt-20 sm:pt-24 md:pt-28 lg:pt-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+
+          {/* Left Column: Premium Content (7/12) */}
+          <div className="lg:col-span-7 flex flex-col justify-center min-h-[300px] md:min-h-[550px] relative">
+            <div className="flex flex-col justify-center space-y-4 sm:space-y-8 lg:space-y-10 animate-fade-in-up">
+              {/* Tech Badge */}
+              <div className="flex items-center space-x-4 w-fit mx-auto lg:mx-0">
+                <div className="h-px w-8 bg-orange-500/40 lg:block hidden"></div>
+                <div className="inline-flex items-center gap-1 px-2.5 py-1.5 md:px-3 md:py-2 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-xl shadow-2xl">
+                  <Star className="text-orange-400 animate-pulse md:w-3 md:h-3" size={10} />
+                  <span className="text-orange-400 text-[8px] md:text-[10px] lg:text-xs font-bold uppercase tracking-[0.4em]">
+                    Our Services
+                  </span>
+                </div>
+              </div>
+
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-display text-white mb-2 md:mb-6 leading-[1.1] tracking-tight drop-shadow-2xl">
+                Hire the Right Talent <br />
+                <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic font-display">Faster & Smarter</span>
+              </h1>
+
+              <p className="text-gray-300 text-[11px] md:text-base lg:text-lg font-light leading-relaxed max-w-xl mx-auto lg:mx-0 tracking-wide uppercase italic opacity-85">
+                Helping companies hire skilled professionals efficiently and reliably.
+              </p>
+
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-6 pt-2 md:pt-6">
+                <button className="group relative px-5 py-3 md:px-8 md:py-4 bg-orange-600 text-white font-black uppercase tracking-[0.3em] overflow-hidden rounded-xl transition-all hover:scale-105 active:scale-95 text-[9px] md:text-[11px] shadow-2xl shadow-orange-600/20">
+                  <span className="relative z-10 flex items-center gap-3">
+                    <Zap size={15} fill="currentColor" className="md:w-5 md:h-5" />
+                    Hire Talent Now
+                  </span>
+                  <div className="absolute inset-0 bg-orange-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                </button>
+
+                <button className="group relative px-5 py-3 md:px-8 md:py-4 bg-white/[0.03] border-2 border-white/10 text-white font-black uppercase tracking-[0.3em] overflow-hidden rounded-xl transition-all hover:bg-white hover:text-[#020617] active:scale-95 text-[9px] md:text-[11px] backdrop-blur-2xl shadow-2xl shadow-black/50">
+                  <span className="relative z-10 flex items-center gap-3">
+                    <ArrowRight size={15} className="md:w-5 md:h-5" />
+                    Find Your Next Job
+                  </span>
+                </button>
+              </div>
+
+              {/* Tech Social Proof */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-10 pt-6">
+                <div className="flex items-center space-x-3 group/item cursor-default">
+                  <ShieldCheck className="text-orange-400 transition-transform group-hover/item:scale-110" size={18} />
+                  <span className="text-white/60 text-[9px] font-bold uppercase tracking-wider group-hover/item:text-white transition-colors">100+ Positions Closed</span>
+                </div>
+                <div className="flex items-center space-x-3 group/item cursor-default">
+                  <Users className="text-orange-400 transition-transform group-hover/item:scale-110" size={18} />
+                  <span className="text-white/60 text-[9px] font-bold uppercase tracking-wider group-hover/item:text-white transition-colors">Specialized in Corporate Hiring</span>
+                </div>
+                <div className="flex items-center space-x-3 group/item cursor-default">
+                  <Star className="text-orange-400 transition-transform group-hover/item:scale-110" size={18} />
+                  <span className="text-white/60 text-[9px] font-bold uppercase tracking-wider group-hover/item:text-white transition-colors">Trusted by Growing Companies</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Premium Form (5/12) */}
+          <div className="lg:col-span-5 animate-fade-in-up delay-700 relative group lg:justify-self-end w-full max-w-[400px]">
+            <div className="bg-white/[0.03] border border-white/10 rounded-[2.5rem] p-6 lg:p-10 backdrop-blur-[100px] shadow-3xl relative overflow-hidden group hover:border-orange-500/30 transition-all duration-1000">
+              
+              <div className="relative z-10 space-y-6">
+                <div className="text-center lg:text-left">
+                  <h3 className="text-2xl md:text-3xl font-display text-white mb-2 leading-none">- Start Hiring <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic">Today</span></h3>
+                  <p className="text-orange-400 text-[10px] uppercase tracking-[0.4em] font-black opacity-70">Strategic Talent Acquisition</p>
+                </div>
+
+                <form className="space-y-4">
+                  <input
+                    type="text"
+                    placeholder="Company / Personal Name"
+                    className="w-full bg-white/5 border border-white/10 px-6 py-3.5 text-white rounded-2xl focus:border-orange-500 focus:bg-white/10 outline-none transition-all placeholder:text-white/20 text-[11px] font-medium tracking-wide"
+                  />
+
+                  <div className="flex gap-4">
+                    <label className="flex-1 cursor-pointer group/radio">
+                      <input 
+                        type="radio" 
+                        name="hero-type-premium" 
+                        className="sr-only peer" 
+                        checked={userType === 'employer'}
+                        onChange={() => setUserType('employer')}
+                      />
+                      <div className="text-center py-3 rounded-xl border border-white/10 peer-checked:border-orange-500 peer-checked:bg-orange-500/10 text-[10px] text-white/40 peer-checked:text-orange-400 transition-all font-black tracking-[0.2em] uppercase hover:bg-white/5">Employer</div>
+                    </label>
+                    <label className="flex-1 cursor-pointer group/radio">
+                      <input 
+                        type="radio" 
+                        name="hero-type-premium" 
+                        className="sr-only peer" 
+                        checked={userType === 'candidate'}
+                        onChange={() => setUserType('candidate')}
+                      />
+                      <div className="text-center py-3 rounded-xl border border-white/10 peer-checked:border-orange-500 peer-checked:bg-orange-500/10 text-[10px] text-white/40 peer-checked:text-orange-400 transition-all font-black tracking-[0.2em] uppercase hover:bg-white/5">Candidate</div>
+                    </label>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="tel" placeholder="Phone" className="w-full bg-white/5 border border-white/10 px-6 py-3.5 text-white rounded-2xl focus:border-orange-500 outline-none text-[11px] font-medium placeholder:text-white/20" />
+                    <input type="email" placeholder="Email" className="w-full bg-white/5 border border-white/10 px-6 py-3.5 text-white rounded-2xl focus:border-orange-500 outline-none text-[11px] font-medium placeholder:text-white/20" />
+                  </div>
+
+                  {userType === 'employer' ? (
+                    <textarea 
+                      rows="3" 
+                      placeholder="Briefly describe your hiring requirements..." 
+                      className="w-full bg-white/5 border border-white/10 px-6 py-3.5 text-white rounded-2xl focus:border-orange-500 outline-none text-[11px] font-medium resize-none placeholder:text-white/20"
+                    ></textarea>
+                  ) : (
+                    <div className="relative">
+                      <input type="file" className="sr-only" id="resume-upload" />
+                      <label htmlFor="resume-upload" className="flex items-center justify-between w-full bg-white/5 border border-white/10 px-6 py-3.5 text-white/40 rounded-2xl cursor-pointer hover:border-orange-500 hover:text-white transition-all text-[11px] font-medium group/upload">
+                        <span>Upload Your Resume</span>
+                        <Upload size={14} className="text-orange-400 group-hover/upload:scale-110 transition-transform" />
+                      </label>
+                    </div>
+                  )}
+
+                  <button className="group relative w-full py-4 bg-orange-600 text-white font-black uppercase tracking-[0.3em] overflow-hidden rounded-xl transition-all hover:scale-[1.02] active:scale-95 text-[10px] shadow-2xl shadow-orange-600/20">
+                    <span className="relative z-10 flex items-center justify-center gap-3">
+                      Get a Call Back
+                      <Send size={14} />
+                    </span>
+                    <div className="absolute inset-0 bg-orange-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Hero Scroll Indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40 animate-bounce">
+        <span className="text-[10px] text-orange-400 font-bold uppercase tracking-[0.5em] rotate-90 mb-8 origin-left">Scroll</span>
+        <div className="w-px h-16 bg-gradient-to-b from-orange-500 to-transparent"></div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;

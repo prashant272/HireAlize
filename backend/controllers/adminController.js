@@ -14,11 +14,13 @@ const generateToken = (id) => {
 exports.loginAdmin = async (req, res) => {
     const { email, password } = req.body;
 
-    // Hardcoded check for admin@2026
-    if (email === 'admin@biryaniyoyo.com' && password === 'admin@2026') {
+    // Clean inputs
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanPassword = password.trim();
+
+    // Hardcoded check for admin
+    if (cleanEmail === 'admin@hirealize.com' && cleanPassword === 'admin@2026') {
         // Create a dummy ID for the token since we are bypassing DB for now
-        // OR find the actual admin in DB if exists. 
-        // For simplicity requested by user:
         const token = jwt.sign({ id: 'admin_master_id' }, process.env.JWT_SECRET, { expiresIn: '30d' });
 
         return res.json({

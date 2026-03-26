@@ -30,12 +30,12 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16 md:h-20 relative">
 
            {/* Branded Logo: Independent from Navbar Height */}
-           <Link to="/" className="absolute left-4 md:left-0 top-1/2 -translate-y-1/2 z-20 transition-all duration-500 hover:scale-[1.02]">
-             <div className="bg-white p-3 rounded-2xl shadow-2xl shadow-white/10 flex items-center justify-center transition-transform shrink-0">
+           <Link to="/" className="absolute left-4 md:left-0 top-1/2 -translate-y-1/2 z-20 transition-all duration-500 hover:scale-[1.05]">
+             <div className="flex items-center justify-center transition-transform shrink-0">
                <img
                  src="/logo.png"
                  alt="Hirealize"
-                 className="h-12 md:h-16 w-auto object-contain"
+                 className="h-12 md:h-16 lg:h-18 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
                />
              </div>
            </Link>
@@ -57,13 +57,13 @@ const Navbar = () => {
                   }`}></span>
               </Link>
             ))}
-            <Link
-              to="/contact"
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('openHireModal'))}
               className="group relative px-6 py-2.5 bg-orange-600 text-white text-[11px] font-black uppercase tracking-[0.2em] rounded-xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-orange-600/20"
             >
               <span className="relative z-10">Hire Now</span>
               <div className="absolute inset-0 bg-orange-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -92,14 +92,13 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <Link
-            to="/contact"
-            onClick={() => setIsOpen(false)}
+          <button
+            onClick={() => { setIsOpen(false); window.dispatchEvent(new CustomEvent('openHireModal')); }}
             className="group relative w-full text-center px-6 py-4 bg-orange-600 text-white font-black uppercase tracking-widest rounded-xl overflow-hidden shadow-xl shadow-orange-600/20 transition-all hover:scale-[1.02] active:scale-95"
           >
             <span className="relative z-10">Hire Now</span>
             <div className="absolute inset-0 bg-orange-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-          </Link>
+          </button>
         </div>
       )}
     </nav>

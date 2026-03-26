@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 
 const ServicesPreview = () => {
   const employerServices = [
-    { title: 'Talent Acquisition', desc: 'End-to-end recruitment solutions across industries.', icon: <Users size={22} />, tag: 'Recruitment' },
-    { title: 'Executive Search', desc: 'Leadership hiring for senior roles.', icon: <Target size={22} />, tag: 'Elite' },
-    { title: 'Contract Staffing', desc: 'Flexible workforce solutions for project-based hiring.', icon: <Briefcase size={22} />, tag: 'Staffing' },
-    { title: 'Bulk Hiring', desc: 'Efficient hiring for large workforce requirements.', icon: <Zap size={22} />, tag: 'Volume' },
+    { title: 'Talent Acquisition', desc: 'End-to-end recruitment support from requirement understanding to final placement.', icon: <Users size={22} />, tag: 'Recruitment' },
+    { title: 'Executive Search', desc: 'Hiring for leadership and critical roles to drive business growth.', icon: <Target size={22} />, tag: 'Elite' },
+    { title: 'Contract Staffing', desc: 'Flexible staffing solutions for short-term and project-based requirements.', icon: <Briefcase size={22} />, tag: 'Staffing' },
+    { title: 'Bulk Hiring', desc: 'Efficient hiring solutions for large-scale workforce needs with quick turnaround.', icon: <Zap size={22} />, tag: 'Volume' },
   ];
 
   const candidateServices = [
-    { title: 'Resume Building', desc: 'Crafting resumes that command attention.', icon: <FileText size={22} />, tag: 'Branding' },
-    { title: 'Interview Preparation', desc: 'Psychology-driven coaching for success.', icon: <GraduationCap size={22} />, tag: 'Strategy' },
-    { title: 'Career Advisory', desc: 'Navigating your path to the summit.', icon: <Award size={22} />, tag: 'Growth' },
-    { title: 'Relocation Support', desc: 'Strategic support for international and domestic moves.', icon: <MapPin size={22} />, tag: 'Mobility' },
+    { title: 'Resume Building', desc: 'Professional resume support to highlight your skills and experience effectively.', icon: <FileText size={22} />, tag: 'Branding' },
+    { title: 'Interview Preparation', desc: 'Guidance and tips to help you confidently crack interviews.', icon: <GraduationCap size={22} />, tag: 'Strategy' },
+    { title: 'Career Guidance', desc: 'Helping you choose the right opportunities based on your skills and goals.', icon: <Award size={22} />, tag: 'Growth' },
+    { title: 'Profile Shortlisting', desc: 'Get matched with suitable job roles based on your experience and preferences.', icon: <MapPin size={22} />, tag: 'Mobility' },
   ];
 
   const ServiceCard = ({ service }) => (
@@ -59,12 +59,12 @@ const ServicesPreview = () => {
         <div className="text-center mb-16 md:mb-32 animate-fade-in-up">
           <div className="flex items-center justify-center space-x-4 mb-6">
             <div className="h-px w-8 bg-orange-500/40"></div>
-            <span className="text-orange-400 text-[11px] font-bold uppercase tracking-[0.5em]">Our Service Suite</span>
+            <span className="text-orange-400 text-[11px] font-bold uppercase tracking-[0.5em]">Our Services</span>
             <div className="h-px w-8 bg-orange-500/40"></div>
           </div>
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-white leading-tight tracking-tight">
-            Comprehensive Solutions for the <br />
-            <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic">Modern Enterprise</span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-white leading-tight tracking-tight max-w-4xl mx-auto">
+            End-to-End Recruitment Solutions Tailored to <br />
+            <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic inline-block pb-1 pr-2">Your Business Needs</span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent mx-auto mt-10"></div>
         </div>
@@ -88,7 +88,7 @@ const ServicesPreview = () => {
         <div className="space-y-12">
           <div className="flex items-center space-x-8 animate-fade-in-up">
             <div className="bg-orange-500/10 border border-orange-500/20 px-8 py-3 rounded-2xl backdrop-blur-xl shadow-[0_0_20px_rgba(249,115,22,0.1)]">
-              <h3 className="text-orange-400 text-xs font-black uppercase tracking-[0.4em]">Candidate Empowerment</h3>
+              <h3 className="text-orange-400 text-xs font-black uppercase tracking-[0.4em]">For Candidates (Your Career, Our Support)</h3>
             </div>
             <div className="h-px flex-grow bg-gradient-to-r from-orange-500/20 to-transparent"></div>
           </div>

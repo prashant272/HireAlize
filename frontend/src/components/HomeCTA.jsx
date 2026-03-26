@@ -21,21 +21,24 @@ const HomeCTA = () => {
               <p className="text-orange-400 text-[10px] md:text-[11px] font-black uppercase tracking-[0.5em] mb-4 md:mb-8 bg-orange-400/10 px-3 md:px-4 py-1.5 md:py-2 rounded-full inline-block border border-orange-400/20">Scale Your Future</p>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-[1.1] tracking-tight">
                 Ready to Accelerate <br />
-                <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic">Your Growth?</span>
+                <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic inline-block pb-1 pr-2">Your Growth?</span>
               </h2>
               <p className="text-gray-300 text-base md:text-lg lg:text-xl font-light leading-relaxed mt-4 md:mt-8 opacity-90 max-w-2xl mx-auto tracking-wide">
-                Join forces with India's premier recruitment partner and unlock the next phase of your success story today.
+                Whether you're hiring or job hunting, we make the process easier and faster.
               </p>
             </div>
 
             <div className="flex flex-wrap justify-center gap-6 md:gap-8 animate-fade-in-up delay-300">
-              <Link to="/contact" className="group relative px-10 py-5 bg-orange-600 text-white font-black uppercase tracking-[0.3em] overflow-hidden rounded-xl transition-all hover:scale-105 active:scale-95 text-xs shadow-2xl shadow-orange-600/20">
+              <button onClick={(e) => {
+                e.preventDefault();
+                window.dispatchEvent(new CustomEvent('openHireModal'));
+              }} className="group relative px-10 py-5 bg-orange-600 text-white font-black uppercase tracking-[0.3em] overflow-hidden rounded-xl transition-all hover:scale-105 active:scale-95 text-xs shadow-2xl shadow-orange-600/20">
                 <span className="relative z-10 flex items-center gap-3">
                   <Zap size={20} fill="currentColor" />
                   Hire Talent
                 </span>
                 <div className="absolute inset-0 bg-orange-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-              </Link>
+              </button>
 
               <Link to="/jobs" className="group relative px-10 py-5 bg-transparent border-2 border-orange-600 text-orange-500 font-black uppercase tracking-[0.3em] overflow-hidden rounded-xl transition-all hover:bg-orange-600 hover:text-white active:scale-95 text-xs">
                 <span className="relative z-10 flex items-center gap-3">
@@ -46,7 +49,7 @@ const HomeCTA = () => {
             </div>
 
             <div className="pt-10 border-t border-white/5 animate-fade-in-up delay-500">
-              <p className="text-white/90 text-[11px] uppercase font-bold tracking-[0.4em]">Proven Recruitment Partner Across PAN India</p>
+              <p className="text-white/90 text-[11px] uppercase font-bold tracking-[0.4em]">Supporting businesses and candidates across PAN India</p>
             </div>
           </div>
 

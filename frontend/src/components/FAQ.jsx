@@ -7,23 +7,31 @@ const FAQ = () => {
   const faqs = [
     {
       question: "How does the hiring process work?",
-      answer: "Our process is streamlined into 3 main stages: Requirement Mapping, Technical & Psychological Screening, and Final Placement. We handle everything from identification to onboarding."
+      answer: "Our process includes understanding your requirement, sourcing relevant candidates, screening profiles, and coordinating interviews until final closure."
     },
     {
-      question: "How long does it typically take to hire a candidate?",
-      answer: "Depending on the complexity of the role, we usually provide a shortlist of qualified candidates within 5-7 business days."
+      question: "How do you ensure candidate quality?",
+      answer: "We conduct initial screening and shortlist candidates based on role requirements before sharing profiles."
+    },
+    {
+      question: "How long does it take to hire a candidate?",
+      answer: "Depending on the role, we typically share relevant candidate profiles within 5–7 working days."
     },
     {
       question: "Do you charge candidates for placement?",
-      answer: "No, we never charge candidates for recruitment. Our services are fully funded by our corporate partners."
+      answer: "No, we do not charge candidates at any stage. Our services are completely free for job seekers."
     },
     {
-      question: "Do you work with early-stage startups?",
-      answer: "Absolutely. We specialize in helping startups scale their core teams with high-impact talent who 'get' the startup culture."
+      question: "Do you work with startups?",
+      answer: "Yes, we work with startups and growing businesses, helping them build strong teams across key functions."
     },
     {
       question: "Do you provide contract staffing solutions?",
-      answer: "Yes, we provide both permanent hiring and contract/managed payroll solutions to suit your specific project needs."
+      answer: "Yes, we offer both permanent hiring and contract staffing solutions based on your business requirements."
+    },
+    {
+      question: "What industries do you specialize in?",
+      answer: "We specialize in hiring for BFSI, sales & marketing, and corporate roles across various industries."
     }
   ];
 
@@ -42,8 +50,9 @@ const FAQ = () => {
         <div className="text-center mb-10 md:mb-20 animate-fade-in-up">
           <p className="text-orange-400 text-[10px] md:text-[11px] font-black uppercase tracking-[0.5em] mb-4 md:mb-6 bg-orange-400/10 px-4 py-2 rounded-full inline-block border border-orange-400/20">Knowledge Base</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4 md:mb-6 leading-tight">
-            Frequently Asked <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic">Questions</span>
+            Frequently Asked <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic inline-block pb-1 pr-2">Questions</span>
           </h2>
+          <p className="text-gray-400 text-sm md:text-lg font-light tracking-widest mt-4 md:mb-8 max-w-3xl mx-auto">Everything you need to know about our hiring process</p>
           <div className="w-20 h-1 bg-orange-500 mx-auto rounded-full shadow-[0_0_15px_rgba(249,115,22,0.5)]"></div>
         </div>
 

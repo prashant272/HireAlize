@@ -1,27 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Briefcase, MapPin, Clock, Upload, Send, Search, X } from 'lucide-react';
+import api from '../api/axios';
 
 const Jobs = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [showApply, setShowApply] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const jobs = [
-    { id: 1, title: 'Senior Software Engineer', location: 'Remote / Bangalore', type: 'Full-time', salary: '₹20L - ₹35L', description: 'We are looking for an experienced Senior Software Engineer with deep expertise in React and Node.js to architect high-performance scalable systems...' },
-    { id: 2, title: 'VP of Talent Acquisition', location: 'New Delhi', type: 'Full-time', salary: '₹40L - ₹60L', description: 'Seeking a visionary leader to strategize recruitment pipelines and enhance employer branding for rapid-growth tech enterprises...' },
-    { id: 3, title: 'Enterprise Account Executive', location: 'Mumbai', type: 'Full-time', salary: '₹15L - ₹25L + Commission', description: 'Looking for a relentless enterprise sales executive capable of closing mid-to-high ticket deals with Fortune 500 clients...' },
-    { id: 4, title: 'Data Strategy Consultant', location: 'Pune', type: 'Contract', salary: '₹1.5L - ₹2.5L / Month', description: 'Seeking a highly analytical Data Consultant to drive insights processing infrastructure for a 6-month digital transformation project...' },
-  ];
+  // Application form state
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    qualification: '',
+    experience: ''
+  });
+  const [resume, setResume] = useState(null);
 
-  const handleApply = (e) => {
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const { data } = await api.get('/jobs');
+        setJobs(data);
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchJobs();
+  }, []);
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleApply = async (e) => {
     e.preventDefault();
-    alert('Application submitted successfully!');
-    setSelectedJob(null);
-    setShowApply(false);
+    try {
+        const applyData = new FormData();
+        applyData.append('jobId', selectedJob._id);
+        applyData.append('fullName', formData.fullName);
+        applyData.append('email', formData.email);
+        applyData.append('phone', formData.phone);
+        applyData.append('qualification', formData.qualification);
+        applyData.append('experience', formData.experience);
+        if (resume) {
+            applyData.append('resume', resume);
+        }
+
+        await api.post('/applications', applyData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        });
+
+        alert('Application submitted successfully!');
+        setSelectedJob(null);
+        setShowApply(false);
+        setFormData({ fullName: '', email: '', phone: '', qualification: '', experience: '' });
+        setResume(null);
+    } catch (error) {
+        console.error('Error applying:', error);
+        alert('Failed to submit application.');
+    }
   };
 
   const toggleDetails = (job, apply) => {
-    if (selectedJob?.id === job.id && showApply === apply) {
+    if (selectedJob?._id === job._id && showApply === apply) {
       setSelectedJob(null);
     } else {
       setSelectedJob(job);
@@ -29,7 +75,7 @@ const Jobs = () => {
     }
   };
 
-  const filteredJobs = jobs.filter(job => 
+  const filteredJobs = jobs.filter(job =>
     job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     job.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
     job.description.toLowerCase().includes(searchTerm.toLowerCase())
@@ -64,7 +110,7 @@ const Jobs = () => {
               className="w-full bg-white/[0.02] border border-white/5 rounded-lg md:rounded-2xl pl-10 pr-10 py-3 md:py-5 text-white focus:border-orange-500 focus:bg-white/[0.05] outline-none transition-all duration-300 placeholder:text-white/20 font-medium text-xs md:text-sm"
             />
             {searchTerm && (
-              <button 
+              <button
                 onClick={() => setSearchTerm('')}
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-white/20 hover:text-orange-400 transition-colors"
               >
@@ -77,19 +123,19 @@ const Jobs = () => {
         {/* Job Grid */}
         {filteredJobs.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-start">
+            {jobs.length === 0 && !loading && <div className="text-white col-span-2 text-center py-10">No active jobs found.</div>}
             {filteredJobs.map((job) => (
               <div
-                key={job.id}
-                className={`p-5 md:p-8 rounded-[1.25rem] md:rounded-[2.5rem] transition-all duration-500 relative overflow-hidden group border ${
-                  selectedJob?.id === job.id 
-                  ? 'bg-orange-500/10 border-orange-500/40 shadow-2xl shadow-orange-500/10' 
-                  : 'bg-white/[0.02] border-white/10 hover:border-orange-500/30 hover:bg-white/[0.04]'
-                }`}
+                key={job._id}
+                className={`p-5 md:p-8 rounded-[1.25rem] md:rounded-[2.5rem] transition-all duration-500 relative overflow-hidden group border ${selectedJob?._id === job._id
+                    ? 'bg-white/[0.05] border-white/20 shadow-2xl shadow-black/50'
+                    : 'bg-white/[0.02] border-white/10 hover:border-orange-500/30 hover:bg-white/[0.04]'
+                  }`}
               >
                 {/* Job Header */}
                 <div className="flex flex-wrap justify-between items-start gap-2 mb-4 md:mb-6 relative z-10">
                   <div className="space-y-0.5 md:space-y-1">
-                    <h3 className={`text-lg md:text-3xl font-display font-bold transition-colors tracking-tight ${selectedJob?.id === job.id ? 'text-orange-400' : 'text-white group-hover:text-orange-300'}`}>
+                    <h3 className={`text-lg md:text-3xl font-display font-bold transition-colors tracking-tight ${selectedJob?._id === job._id ? 'text-orange-400' : 'text-white group-hover:text-orange-300'}`}>
                       {job.title}
                     </h3>
                     <div className="flex flex-wrap gap-3 text-white/40 text-[9px] md:text-xs font-light tracking-wide">
@@ -106,30 +152,28 @@ const Jobs = () => {
                 <div className="flex items-center gap-3 md:gap-4 relative z-10">
                   <button
                     onClick={() => toggleDetails(job, false)}
-                    className={`flex-1 py-2.5 md:py-3.5 rounded-lg md:rounded-xl text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] transition-all border ${
-                      selectedJob?.id === job.id && !showApply
-                      ? 'bg-orange-600 border-orange-600 text-white shadow-lg shadow-orange-600/20' 
-                      : 'bg-white/5 border-white/10 text-white/50 hover:border-orange-500 hover:text-orange-400'
-                    }`}
+                    className={`flex-1 py-2.5 md:py-3.5 rounded-lg md:rounded-xl text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] transition-all border ${selectedJob?._id === job._id && !showApply
+                        ? 'bg-orange-600 border-orange-600 text-white shadow-lg shadow-orange-600/20'
+                        : 'bg-white/5 border-white/10 text-white/50 hover:border-orange-500 hover:text-orange-400'
+                      }`}
                   >
                     Details
                   </button>
                   <button
                     onClick={() => toggleDetails(job, true)}
-                    className={`flex-1 py-2.5 md:py-3.5 rounded-lg md:rounded-xl text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] transition-all border ${
-                      selectedJob?.id === job.id && showApply
-                      ? 'bg-orange-600 border-orange-600 text-white shadow-lg shadow-orange-600/20'
-                      : 'bg-orange-500/10 border-orange-500/20 text-orange-400 hover:bg-orange-600 hover:text-white hover:shadow-orange-600/30'
-                    }`}
+                    className={`flex-1 py-2.5 md:py-3.5 rounded-lg md:rounded-xl text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] transition-all border ${selectedJob?._id === job._id && showApply
+                        ? 'bg-orange-600 border-orange-600 text-white shadow-lg shadow-orange-600/20'
+                        : 'bg-orange-500/10 border-orange-500/20 text-orange-400 hover:bg-orange-600 hover:text-white hover:shadow-orange-600/30'
+                      }`}
                   >
                     Apply
                   </button>
                 </div>
 
                 {/* Expanded Content Inline */}
-                {selectedJob?.id === job.id && (
+                {selectedJob?._id === job._id && (
                   <div className="mt-5 pt-5 md:mt-8 md:pt-8 border-t border-white/5 animate-fade-in relative z-10">
-                    <button 
+                    <button
                       onClick={() => setSelectedJob(null)}
                       className="absolute top-1 right-0 p-2 text-white/10 hover:text-orange-400 transition-colors"
                     >
@@ -138,15 +182,24 @@ const Jobs = () => {
 
                     {!showApply ? (
                       <div className="space-y-5 md:space-y-8">
-                        <p className="text-white/50 leading-relaxed font-light text-[11px] md:text-sm italic border-l border-orange-500/50 pl-4 md:pl-6 py-1.5 bg-gradient-to-r from-orange-500/5 to-transparent">
+                        <p className="text-white/90 leading-relaxed font-medium text-[11px] md:text-sm italic border-l border-orange-500/50 pl-4 md:pl-6 py-1.5 bg-gradient-to-r from-orange-500/5 to-transparent">
                           "{job.description}"
                         </p>
                         <div className="space-y-2.5 md:space-y-4">
                           <p className="text-white/80 text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em]">Expectations</p>
-                          <ul className="text-white/40 text-[10px] md:text-sm space-y-2 md:space-y-3 font-light">
-                            <li className="flex items-center gap-2.5"><div className="w-1 h-1 rounded-full bg-orange-500/60"></div>Stable high-growth tech background.</li>
-                            <li className="flex items-center gap-2.5"><div className="w-1 h-1 rounded-full bg-orange-500/60"></div>Excellent communication style.</li>
-                            <li className="flex items-center gap-2.5"><div className="w-1 h-1 rounded-full bg-orange-500/60"></div>Problem-solving orientation.</li>
+                          <ul className="text-white text-[10px] md:text-sm space-y-2 md:space-y-3 font-medium list-none ml-2">
+                            {job.expectations && job.expectations.map((exp, i) => (
+                                <li key={i} className="flex items-start gap-2.5">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-orange-500/80 mt-1.5 flex-shrink-0"></div>
+                                  <span className="leading-relaxed">{exp}</span>
+                                </li>
+                            ))}
+                            {(!job.expectations || job.expectations.length === 0) && (
+                                <li className="flex items-start gap-2.5">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-orange-500/80 mt-1.5 flex-shrink-0"></div>
+                                  <span className="leading-relaxed">Detailed expectations will be shared during interview.</span>
+                                </li>
+                            )}
                           </ul>
                         </div>
                       </div>
@@ -155,15 +208,20 @@ const Jobs = () => {
                         <h4 className="text-base md:text-xl font-display font-bold text-white tracking-tight leading-tight">Join <span className="text-orange-400">{job.title}</span></h4>
                         <form className="space-y-3 md:space-y-4" onSubmit={handleApply}>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-                            <input type="text" placeholder="Full Name" required className="w-full bg-white/[0.03] border border-white/5 rounded-lg px-4 md:px-5 py-2.5 md:py-4 text-white text-xs md:text-sm outline-none focus:border-orange-500 transition-all font-light" />
-                            <input type="email" placeholder="Email" required className="w-full bg-white/[0.03] border border-white/5 rounded-lg px-4 md:px-5 py-2.5 md:py-4 text-white text-xs md:text-sm outline-none focus:border-orange-500 transition-all font-light" />
+                            <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} placeholder="Full Name" required className="w-full bg-white/[0.03] border border-white/5 rounded-lg px-4 md:px-5 py-2.5 md:py-4 text-white text-xs md:text-sm outline-none focus:border-orange-500 transition-all font-light" />
+                            <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email" required className="w-full bg-white/[0.03] border border-white/5 rounded-lg px-4 md:px-5 py-2.5 md:py-4 text-white text-xs md:text-sm outline-none focus:border-orange-500 transition-all font-light" />
                           </div>
-                          <input type="tel" placeholder="Phone" required className="w-full bg-white/[0.03] border border-white/5 rounded-lg px-4 md:px-5 py-2.5 md:py-4 text-white text-xs md:text-sm outline-none focus:border-orange-500 transition-all font-light" />
                           
-                          <label className="flex flex-col items-center justify-center p-3 md:p-6 border border-dashed border-white/10 rounded-lg md:rounded-2xl hover:border-orange-500/40 cursor-pointer transition-all bg-white/[0.01] group/file">
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+                            <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone" required className="col-span-1 sm:col-span-1 border border-white/5 w-full bg-white/[0.03] rounded-lg px-4 md:px-5 py-2.5 md:py-4 text-white text-xs md:text-sm outline-none focus:border-orange-500 transition-all font-light" />
+                            <input type="text" name="qualification" value={formData.qualification} onChange={handleInputChange} placeholder="Highest Qualification" required className="border border-white/5 col-span-1 sm:col-span-1 w-full bg-white/[0.03] rounded-lg px-4 md:px-5 py-2.5 md:py-4 text-white text-xs md:text-sm outline-none focus:border-orange-500 transition-all font-light" />
+                            <input type="text" name="experience" value={formData.experience} onChange={handleInputChange} placeholder="Experience (e.g. 2 Yrs, Fresher)" required className="border border-white/5 col-span-1 sm:col-span-1 w-full bg-white/[0.03] rounded-lg px-4 md:px-5 py-2.5 md:py-4 text-white text-xs md:text-sm outline-none focus:border-orange-500 transition-all font-light" />
+                          </div>
+
+                          <label className="flex flex-col items-center justify-center p-3 md:p-6 border border-dashed border-white/10 rounded-lg md:rounded-2xl hover:border-orange-500/40 cursor-pointer transition-all bg-white/[0.01] group/file relative">
                             <Upload className="text-orange-500/60 mb-1.5 md:mb-2" size={18} />
-                            <span className="text-[8px] md:text-[10px] text-white/30 font-black uppercase tracking-widest text-center">Resume (PDF)</span>
-                            <input type="file" className="hidden" accept=".pdf" />
+                            <span className="text-[8px] md:text-[10px] text-white/30 font-black uppercase tracking-widest text-center">{resume ? resume.name : 'Resume (PDF)'}</span>
+                            <input type="file" className="hidden" accept=".pdf" onChange={(e) => setResume(e.target.files[0])} />
                           </label>
 
                           <button className="w-full py-3 md:py-4 bg-orange-600 text-white font-black uppercase tracking-[0.2em] md:tracking-[0.3em] rounded-lg md:rounded-xl hover:bg-orange-500 transition-all text-[10px] md:text-[11px] shadow-lg shadow-orange-600/10">
@@ -186,7 +244,7 @@ const Jobs = () => {
             <p className="text-white/30 text-[10px] max-w-xs mx-auto">
               We couldn't find any positions matching "{searchTerm}".
             </p>
-            <button 
+            <button
               onClick={() => setSearchTerm('')}
               className="mt-6 text-orange-400 text-[8px] font-black uppercase tracking-[0.4em] hover:text-orange-300 transition-colors"
             >

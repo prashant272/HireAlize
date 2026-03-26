@@ -5,25 +5,25 @@ const ProcessPreview = () => {
   const steps = [
     {
       title: 'Understanding Requirements',
-      desc: 'We dive deep into your company culture and the specific demands of the role to find the precise fit.',
+      desc: 'We understand your company, job role, and specific hiring needs to ensure the right fit.',
       icon: <Search size={28} />,
       label: 'Strategy'
     },
     {
       title: 'Talent Sourcing & Screening',
-      desc: 'Our experts conduct multi-level interviews and technical evaluations to identify the top 1% talent.',
+      desc: 'We source relevant candidates and conduct initial screening to shortlist suitable profiles.',
       icon: <UserCheck size={28} />,
-      label: 'Refinement'
+      label: 'Sourcing'
     },
     {
-      title: 'Shortlisting & Coordination',
-      desc: 'We manage interest, coordinate interviews, and facilitate communication between client and candidate.',
+      title: 'Screening & Evaluation',
+      desc: 'Basic technical and profile-level screening to ensure quality candidates.',
       icon: <ClipboardCheck size={28} />,
-      label: 'Alignment'
+      label: 'Evaluation'
     },
     {
-      title: 'Offer Closure',
-      desc: 'We provide strategic support during negotiations to ensure a successful and seamless onboarding.',
+      title: 'Interview Coordination & Closure',
+      desc: 'End-to-end support until final selection and onboarding.',
       icon: <CheckCircle size={28} />,
       label: 'Success'
     },
@@ -37,14 +37,13 @@ const ProcessPreview = () => {
       <div className="absolute bottom-1/2 right-1/4 w-[400px] h-[400px] bg-purple-600/5 rounded-full blur-[120px] -z-0 animate-pulse-slow"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
         <div className="text-center mb-12 md:mb-20 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/5 border border-orange-500/20 backdrop-blur-xl mb-4 md:mb-8">
             <Clock className="text-orange-400" size={16} />
-            <span className="text-orange-400 text-[10px] font-bold uppercase tracking-[0.4em]">The Engine</span>
+            <span className="text-orange-400 text-[10px] font-bold uppercase tracking-[0.4em]">Our Hiring Process</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-white tracking-tight">How We <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic">Accelerate</span></h2>
-          <p className="text-gray-400 text-sm md:text-lg font-light tracking-widest uppercase italic mt-4 md:mt-6">Proprietary Strategic Methodology</p>
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-white tracking-tight">How We <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic inline-block pb-1 pr-2">Work</span></h2>
+          <p className="text-gray-400 text-sm md:text-lg font-light tracking-widest uppercase italic mt-4 md:mt-6">A simple and effective approach to finding the right talent</p>
         </div>
 
         {/* Steps Grid */}

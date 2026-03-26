@@ -49,7 +49,7 @@ const WhyChoose = () => {
             <ShieldCheck className="text-orange-400" size={16} />
             <span className="text-orange-400 text-[10px] font-bold uppercase tracking-[0.4em]">Why Select Us</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-4 md:mb-6 tracking-tight">Why Companies Choose <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic">Hirealize</span></h2>
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-4 md:mb-6 tracking-tight">Why Companies Choose <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic inline-block pb-1 pr-2">Hirealize</span></h2>
           <p className="text-gray-400 text-sm md:text-lg font-light tracking-widest uppercase italic max-w-2xl mx-auto">Elite Recruitment Ecosystem. Strategic Efficiency. Quality Results.</p>
         </div>
 

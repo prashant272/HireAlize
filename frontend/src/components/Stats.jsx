@@ -76,7 +76,7 @@ const Stats = () => {
           </div>
           <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-8 leading-tight tracking-tight">
             What We’ve <br className="hidden sm:block" />
-            <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic">Achieved So Far</span>
+            <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic inline-block pb-1 pr-2">Achieved So Far</span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent mx-auto"></div>
         </div>

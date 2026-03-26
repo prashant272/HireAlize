@@ -21,7 +21,7 @@ const AboutPreview = () => {
             <div className="relative z-10 aspect-[4/5] rounded-[3rem] overflow-hidden border border-white/10 p-2 bg-gradient-to-b from-white/10 to-transparent shadow-2xl shadow-black/50">
               <div className="w-full h-full rounded-[2.5rem] overflow-hidden relative">
                 <img
-                  src="/hero1.jpg"
+                  src="/about_hero.jpg"
                   alt="About Hirealize"
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
@@ -54,7 +54,7 @@ const AboutPreview = () => {
               </div>
               <h2 className="text-xl sm:text-3xl lg:text-5xl xl:text-6xl font-display font-bold text-white leading-[1.2] tracking-tight">
                 Building High-Performing <br className="hidden sm:block" />
-                <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic block sm:inline">Teams for Growing Businesses</span>
+                <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic block sm:inline-block pb-1 pr-2">Teams for Growing Businesses</span>
               </h2>
             </div>
 

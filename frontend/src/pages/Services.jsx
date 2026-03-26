@@ -1,21 +1,53 @@
-import React from 'react';
-import { Target, TrendingUp, Users, ShieldCheck, FileText, UserCircle, MapPin, Search, Award, Zap, Briefcase, ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Target, TrendingUp, Users, ShieldCheck, FileText, UserCircle, MapPin, Search, Award, Zap, Briefcase, ChevronRight, X, Send } from 'lucide-react';
+import api from '../api/axios';
 
 const Services = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [heroForm, setHeroForm] = useState({ name: '', phone: '', email: '', requirement: '' });
+  const [status, setStatus] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleApply = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatus('');
+    try {
+        await api.post('/contacts', {
+            name: heroForm.name,
+            email: heroForm.email,
+            phone: heroForm.phone,
+            message: heroForm.requirement || 'General employer inquiry from Services Page',
+            source: 'Services Form (Hire Talent CTA)'
+        });
+        setStatus('Inquiry received! Our team will contact you securely.');
+        window.alert('Inquiry received! Our team will contact you securely.');
+        
+        setHeroForm({ name: '', phone: '', email: '', requirement: '' });
+        setTimeout(() => { setStatus(''); setIsModalOpen(false); }, 2000);
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        setStatus('Transmission error. Please try again.');
+        window.alert('Transmission error. Please try again.');
+        setTimeout(() => setStatus(''), 5000);
+    } finally {
+        setIsSubmitting(false);
+    }
+  };
   const employerServices = [
-    { t: 'Talent Acquisition', d: 'End-to-end recruitment solutions across global industries.', i: <Users size={20} /> },
-    { t: 'Executive Search', d: 'Strategic leadership hiring for senior and C-suite roles.', i: <Target size={20} /> },
-    { t: 'Contract Staffing', d: 'Flexible workforce solutions for specialized project needs.', i: <Search size={20} /> },
-    { t: 'Payroll Management', d: 'Comprehensive payroll processing and compliance assurance.', i: <ShieldCheck size={20} /> },
-    { t: 'Bulk Hiring', d: 'Efficient high-volume hiring for large-scale operations.', i: <TrendingUp size={20} /> },
-    { t: 'Recruitment Consulting', d: 'Strategic workforce planning and hiring advisory.', i: <Briefcase size={20} /> },
+    { t: 'Talent Acquisition', d: 'End-to-end recruitment support from requirement understanding to final placement.', i: <Users size={20} /> },
+    { t: 'Executive Search', d: 'Hiring for senior and leadership roles across key business functions.', i: <Target size={20} /> },
+    { t: 'Contract Staffing', d: 'Flexible staffing solutions for short-term and project-based needs.', i: <Briefcase size={20} /> },
+    { t: 'Bulk Hiring', d: 'Efficient hiring for large workforce requirements with quick turnaround.', i: <TrendingUp size={20} /> },
+    { t: 'Recruitment Consulting', d: 'Support with workforce planning and hiring strategies.', i: <Search size={20} /> },
   ];
 
   const candidateServices = [
-    { t: 'Resume Mastery', d: 'Premium resume crafting to optimize career conversion.', i: <FileText size={20} /> },
-    { t: 'Interview Coaching', d: 'Personalized mock sessions and strategic guidance.', i: <Zap size={20} /> },
-    { t: 'Career Calibration', d: 'Long-term advisory to navigate your high-growth path.', i: <Target size={20} /> },
-    { t: 'Relocation Support', d: 'Seamless logistics for your next global opportunity.', i: <MapPin size={20} /> },
+    { t: 'Resume Building', d: 'Professional resume support to highlight your skills effectively.', i: <FileText size={20} /> },
+    { t: 'Interview Preparation', d: 'Guidance to help you perform confidently in interviews.', i: <Zap size={20} /> },
+    { t: 'Career Guidance', d: 'Helping you choose the right opportunities based on your profile.', i: <Target size={20} /> },
+    { t: 'Job Opportunities', d: 'Access to relevant job openings across multiple industries.', i: <Search size={20} /> },
   ];
 
   return (
@@ -35,11 +67,11 @@ const Services = () => {
               <Award className="text-orange-400" size={14} />
               <span className="text-orange-400 text-[10px] font-bold uppercase tracking-[0.4em]">Service Portfolio</span>
             </div>
-            <h1 className="text-3xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-4 md:mb-8 tracking-tighter leading-none">
-              Our <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic">Services</span>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4 md:mb-8 tracking-tighter leading-none">
+              Our <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic inline-block pb-1 pr-2">Services</span>
             </h1>
             <p className="text-gray-400 text-sm md:text-xl font-light max-w-2xl mx-auto tracking-wide">
-              Bespoke recruitment strategies designed for the world's most innovative organizations.
+              End-to-end recruitment solutions designed to help businesses hire efficiently and candidates grow their careers.
             </p>
           </div>
 
@@ -120,8 +152,92 @@ const Services = () => {
               </div>
             </div>
           </div>
+
+          {/* Closing Statement & CTA */}
+          <div className="mt-20 md:mt-32 max-w-4xl mx-auto text-center animate-fade-in-up">
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">
+              Looking to hire or find your next <span className="text-orange-400 italic">opportunity?</span>
+            </h2>
+            <p className="text-gray-400 text-base md:text-xl font-light leading-relaxed mb-10 max-w-2xl mx-auto">
+              We focus on connecting the right talent with the right opportunities while ensuring a smooth and efficient hiring experience for both clients and candidates.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6">
+              <button 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsModalOpen(true);
+                }} 
+                className="group relative px-8 py-4 bg-orange-600/10 text-orange-400 font-bold uppercase tracking-[0.2em] overflow-hidden rounded-xl transition-all hover:bg-orange-600 hover:text-white border border-orange-500/30 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] text-sm shadow-xl flex items-center gap-3"
+              >
+                <Target size={18} />
+                <span>Hire Talent</span>
+              </button>
+              
+              <Link 
+                to="/jobs" 
+                className="group relative px-8 py-4 bg-white/5 text-white font-bold uppercase tracking-[0.2em] overflow-hidden rounded-xl transition-all hover:bg-white/10 hover:text-orange-400 border border-white/10 hover:shadow-xl text-sm flex items-center gap-3"
+              >
+                <Search size={18} />
+                <span>Find Jobs</span>
+              </Link>
+            </div>
+          </div>
+
         </div>
       </section>
+
+      {/* Hire Talent Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 opacity-100">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsModalOpen(false)}></div>
+          <div className="relative w-full max-w-lg bg-[#020617] border border-white/10 rounded-3xl shadow-2xl overflow-hidden animate-fade-in-up">
+            <button onClick={() => setIsModalOpen(false)} className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors z-20">
+              <X size={20} />
+            </button>
+            <div className="p-6 sm:p-8">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-display text-white mb-2 leading-none">Start <span className="text-orange-400 italic">Hiring</span></h3>
+                <p className="text-white/50 text-[10px] uppercase font-bold tracking-widest">Strategic Talent Acquisition</p>
+              </div>
+              <form onSubmit={handleApply} className="space-y-4">
+                  {status && (
+                    <div className={`p-3 rounded-xl border text-[11px] font-bold text-center ${status.includes('error') ? 'bg-red-500/10 border-red-500/20 text-red-400' : 'bg-green-500/10 border-green-500/20 text-green-400'}`}>
+                      {status}
+                    </div>
+                  )}
+                  <input
+                    type="text"
+                    required
+                    value={heroForm.name}
+                    onChange={e => setHeroForm({...heroForm, name: e.target.value})}
+                    placeholder="Company / Personal Name"
+                    className="w-full bg-white/5 border border-white/10 px-6 py-3.5 text-white rounded-2xl focus:border-orange-500 focus:bg-white/10 outline-none transition-all placeholder:text-white/20 text-[11px] font-medium tracking-wide"
+                  />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="tel" required value={heroForm.phone} onChange={e => setHeroForm({...heroForm, phone: e.target.value})} placeholder="Phone" className="w-full bg-white/5 border border-white/10 px-6 py-3.5 text-white rounded-2xl focus:border-orange-500 outline-none text-[11px] font-medium placeholder:text-white/20" />
+                    <input type="email" required value={heroForm.email} onChange={e => setHeroForm({...heroForm, email: e.target.value})} placeholder="Email" className="w-full bg-white/5 border border-white/10 px-6 py-3.5 text-white rounded-2xl focus:border-orange-500 outline-none text-[11px] font-medium placeholder:text-white/20" />
+                  </div>
+                  <textarea
+                      rows="3"
+                      required
+                      value={heroForm.requirement}
+                      onChange={e => setHeroForm({...heroForm, requirement: e.target.value})}
+                      placeholder="Briefly describe your hiring requirements..."
+                      className="w-full bg-white/5 border border-white/10 px-6 py-3.5 text-white rounded-2xl focus:border-orange-500 outline-none text-[11px] font-medium resize-none placeholder:text-white/20"
+                  ></textarea>
+
+                  <button type="submit" disabled={isSubmitting} className="group relative w-full py-4 bg-orange-600 text-white font-black uppercase tracking-[0.3em] overflow-hidden rounded-xl transition-all hover:scale-[1.02] active:scale-95 text-[10px] shadow-2xl shadow-orange-600/20 disabled:opacity-50 mt-2">
+                    <span className="relative z-10 flex items-center justify-center gap-3">
+                      {isSubmitting ? 'Transmitting...' : 'Submit Request'}
+                      <Send size={14} />
+                    </span>
+                    <div className="absolute inset-0 bg-orange-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                  </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

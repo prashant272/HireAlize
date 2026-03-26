@@ -4,69 +4,63 @@ import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 const Testimonials = () => {
   const reviews = [
     {
-      company: 'Revolt Motors',
-      industry: 'EV & Automotive',
-      text: "Hirealize transformed our talent acquisition pipeline. Within 3 weeks, they placed our entire core engineering team for our new EV division—exactly the high-caliber profiles we needed to drive our product roadmap forward.",
+      company: 'Manufacturing Company',
+      industry: 'HR Manager',
+      text: "Hirealize helped us close multiple positions within tight timelines. The profiles shared were relevant and well-screened.",
       rating: 5,
     },
     {
-      company: 'Godrej Consumers',
-      industry: 'FMCG',
-      text: "Their understanding of the FMCG landscape is exceptional. Hirealize consistently delivers candidates who don't just fit the role—but genuinely align with the Godrej culture and long-term vision.",
+      company: 'BFSI Firm',
+      industry: 'Talent Acquisition Lead',
+      text: "Good understanding of our requirements and smooth coordination throughout the hiring process.",
       rating: 5,
     },
     {
-      company: 'DB Schenker',
-      industry: 'Logistics & SCM',
-      text: "For our large-scale regional expansion, we needed a recruitment partner who could move fast without compromising quality. Hirealize delivered 40+ vetted profiles across 5 cities in under a month. Outstanding execution.",
+      company: 'FMCG Company',
+      industry: 'Business Head',
+      text: "We were able to close key sales roles quickly with their support. Reliable and responsive team.",
       rating: 5,
     },
     {
-      company: 'Jindal Stainless',
-      industry: 'Steel & Manufacturing',
-      text: "We partnered with Hirealize for senior leadership mandates across our manufacturing plants. Their niche domain expertise and quality of shortlisted candidates set them apart from every other agency we've worked with.",
+      company: 'BPO',
+      industry: 'Operations Manager',
+      text: "Consistent support in bulk hiring with quality candidates. Would definitely recommend.",
       rating: 5,
     },
     {
-      company: 'Johnson Controls',
-      industry: 'Building Tech',
-      text: "Sourcing specialized HVAC and building tech professionals is notoriously difficult. Hirealize cracked it with precision—connecting us with candidates whose profiles were an immediate match. Highly recommended.",
+      company: 'Startup',
+      industry: 'Founder',
+      text: "They understand urgency and deliver profiles quickly. A dependable hiring partner.",
       rating: 5,
     },
     {
-      company: 'Concentrix',
-      industry: 'BPO & Customer Experience',
-      text: "Hirealize has been our go-to for bulk hiring across multiple locations. Their ability to maintain quality at scale—without delays—has made them an indispensable part of our hiring strategy.",
+      company: 'NBFC',
+      industry: 'HR Head',
+      text: "Hirealize understands our urgency and consistently shares relevant profiles within a short time. Their coordination throughout the process is smooth and professional.",
       rating: 5,
     },
     {
-      company: 'Singhi & Co',
-      industry: 'Audit & Consulting',
-      text: "Finding professionals who meet the exacting standards of a Big 4-caliber audit firm is no easy task. Hirealize not only understood those standards—they consistently exceeded them with every shortlist.",
+      company: 'FMCG Company',
+      industry: 'Regional Sales Head',
+      text: "We hired multiple sales executives through Hirealize, and the quality of candidates was exactly what we were looking for.",
       rating: 5,
     },
     {
-      company: 'Spacewood Furnishers',
-      industry: 'Furniture Manufacturing',
-      text: "We've scaled our workforce significantly over the past year, and Hirealize has been with us every step of the way—from floor-level technicians to senior plant management. A true partner.",
+      company: 'Corporate Firm',
+      industry: 'Talent Acquisition',
+      text: "Very responsive team. They understood our requirements clearly and delivered suitable candidates without unnecessary delays.",
       rating: 5,
     },
     {
-      company: 'Policy Bazaar',
-      industry: 'InsurTech & FinTech',
-      text: "The fintech talent war is real. Hirealize helped us secure top product and engineering talent in a highly competitive market, with a placement success rate that consistently crossed 90%.",
+      company: 'Service Industry',
+      industry: 'HR Executive',
+      text: "Good experience working with them. They maintain clear communication and ensure proper follow-ups until closure.",
       rating: 5,
     },
     {
-      company: 'Tele Performance',
-      industry: 'CX & Outsourcing',
-      text: "For our rapid ramp-ups, we needed a partner that matched our pace. Hirealize delivered high-volume, quality-screened candidates on tight timelines—every single time. They're the gold standard for CX hiring.",
-      rating: 5,
-    },
-    {
-      company: 'Legrand India',
-      industry: 'Electrical & Digital Infra',
-      text: "From R&D engineers to sales leadership, Hirealize has consistently matched our technical and cultural requirements. Their deep understanding of the electrical infrastructure space is evident in every hire.",
+      company: 'Corporate Office',
+      industry: 'Admin Head',
+      text: "They have a good understanding of corporate roles and were able to match candidates as per our expectations.",
       rating: 5,
     },
   ];
@@ -104,13 +98,13 @@ const Testimonials = () => {
         <div className="text-center mb-16 animate-fade-in-up">
           <div className="flex items-center justify-center space-x-4 mb-6">
             <div className="h-px w-8 bg-orange-500/40"></div>
-            <span className="text-orange-400 text-[11px] font-bold uppercase tracking-[0.5em]">Client Voices</span>
+            <span className="text-orange-400 text-[11px] font-bold uppercase tracking-[0.5em]">Client Testimonials</span>
             <div className="h-px w-8 bg-orange-500/40"></div>
           </div>
           <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-8 leading-tight tracking-tight">
-            Voice of the{' '}
-            <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic">
-              High-Performance Network
+            Trusted by{' '}
+            <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic inline-block pb-1 pr-2">
+              Growing Businesses
             </span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent mx-auto"></div>

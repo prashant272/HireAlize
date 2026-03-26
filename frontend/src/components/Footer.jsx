@@ -53,16 +53,12 @@ const Footer = () => {
           {/* Brand Identity */}
           <div className="lg:col-span-4 space-y-8">
             <Link to="/" className="inline-flex items-center group">
-              <div className="bg-white p-3 rounded-2xl shadow-xl shadow-white/5 transition-all duration-500 group-hover:scale-105">
-                <img src="/logo.png" alt="Hirealize" className="h-14 w-auto object-contain" />
-              </div>
-              <div className="ml-5">
-                <h2 className="text-white text-3xl font-bold tracking-tight mb-1">Hirealize</h2>
-                <p className="text-orange-400 text-[10px] font-black uppercase tracking-[0.4em]">Consultants</p>
+              <div className="transition-all duration-500 group-hover:scale-105 shrink-0">
+                <img src="/logo.png" alt="Hirealize" className="h-14 md:h-16 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]" />
               </div>
             </Link>
             <p className="text-white/70 text-sm leading-relaxed font-normal max-w-sm">
-              Defining the future of talent acquisition through sophisticated strategy, global reach, and unparalleled expertise in executive search.
+              Reliable recruitment solutions designed for growing businesses and ambitious professionals.
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((social, idx) => (
@@ -118,10 +114,23 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-10 border-t border-white/5 text-center">
-          <p className="text-white font-bold text-[11px] uppercase tracking-[0.4em]">
+        <div className="pt-10 border-t border-white/5 flex flex-col items-center gap-4">
+          <p className="text-white font-bold text-[11px] text-center uppercase tracking-[0.4em]">
             &copy; {currentYear} Hirealize Consultants. All Rights Reserved.
           </p>
+          <a
+            href="https://primeimpact.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-6 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full transition-all duration-500 group shadow-lg hover:shadow-white/5"
+          >
+            <span className="text-white text-[10px] font-black uppercase tracking-[0.3em] transition-colors">
+              Designed & Developed by
+            </span>
+            <span className="text-orange-400 text-[11px] font-black uppercase tracking-[0.3em] group-hover:text-orange-300 transition-colors">
+              Prime Impact IT Solutions
+            </span>
+          </a>
         </div>
       </div>
     </footer>

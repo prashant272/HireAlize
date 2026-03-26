@@ -18,20 +18,22 @@ const upload = multer({
         s3: s3,
         bucket: process.env.AWS_S3_BUCKET,
         contentType: multerS3.AUTO_CONTENT_TYPE, // Automatically set content type
+        contentDisposition: 'inline', // Ensure PDF opens in browser instead of downloading
+        cacheControl: 'max-age=31536000', // Cache for faster loading on subsequent views
         metadata: function (req, file, cb) {
             cb(null, { fieldName: file.fieldname });
         },
         key: function (req, file, cb) {
             const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
             const extension = path.extname(file.originalname);
-            // Store inside 'yo-yo-biryani' folder as requested
-            cb(null, `yo-yo-biryani/${file.fieldname}-${uniqueSuffix}${extension}`);
+            // Store inside 'resumes' folder for HR platform
+            cb(null, `resumes/${file.fieldname}-${uniqueSuffix}${extension}`);
         }
     }),
     limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
     fileFilter: function (req, file, cb) {
-        const filetypes = /jpeg|jpg|png|webp/;
-        const mimetypes = /image\/jpeg|image\/png|image\/webp/;
+        const filetypes = /jpeg|jpg|png|webp|pdf|doc|docx/;
+        const mimetypes = /image\/jpeg|image\/png|image\/webp|application\/pdf|application\/msword|application\/vnd.openxmlformats-officedocument.wordprocessingml.document/;
 
         const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
         const mimetype = mimetypes.test(file.mimetype);
@@ -39,7 +41,7 @@ const upload = multer({
         if (mimetype && extname) {
             return cb(null, true);
         } else {
-            cb(new Error('Error: Images Only (jpeg, jpg, png, webp)!'));
+            cb(new Error('Error: Only images and documents (PDF/DOC) are allowed!'));
         }
     }
 });

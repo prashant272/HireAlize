@@ -30,13 +30,13 @@ const IndustriesGrid = () => {
         <div className="text-center mb-12 md:mb-20 animate-fade-in-up">
           <div className="flex items-center justify-center space-x-4 mb-6">
             <div className="h-px w-8 bg-orange-500/40"></div>
-            <span className="text-orange-400 text-[11px] font-bold uppercase tracking-[0.5em]">Market Verticals</span>
+            <span className="text-orange-400 text-[11px] font-bold uppercase tracking-[0.5em]">Industries We Serve</span>
             <div className="h-px w-8 bg-orange-500/40"></div>
           </div>
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-8 leading-tight tracking-tight">
-            Industries We <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic">Empower</span>
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-4 leading-tight tracking-tight">
+            Industries We <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent italic inline-block pb-1 pr-2">Serve</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent mx-auto"></div>
+          <p className="text-gray-400 text-sm md:text-lg font-light tracking-widest mt-4 md:mt-8 max-w-3xl mx-auto">Focused expertise in hiring across Corporate Roles, Sales & Marketing, IT & BPO and BFSI</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

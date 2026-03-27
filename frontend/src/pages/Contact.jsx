@@ -46,13 +46,13 @@ const Contact = () => {
     const contactInfo = [
         {
             icon: <MapPin size={24} />,
-            title: 'Our Base',
+            title: 'Office',
             details: ['Kibu Coworkings, First Floor, D-65,', 'Udyog Vihar Phase V, Sector-19,', 'Gurugram, Haryana 122016'],
             color: 'from-orange-600 to-orange-400'
         },
         {
             icon: <Phone size={24} />,
-            title: 'Direct Line',
+            title: 'Phone',
             details: ['+91 79822 81621', 'Phone Mon-Sat | 10Am-7Pm'],
             color: 'from-blue-600 to-blue-400'
         },

@@ -62,7 +62,8 @@ const Jobs = () => {
         setResume(null);
     } catch (error) {
         console.error('Error applying:', error);
-        alert('Failed to submit application.');
+        const message = error.response?.data?.message || 'Failed to submit application. Please try again.';
+        alert(message);
     }
   };
 

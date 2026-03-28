@@ -5,28 +5,34 @@ exports.submitApplication = async (req, res) => {
     try {
         const { jobId, fullName, email, phone, qualification, experience } = req.body;
         
-        // Check for duplicate application
-        let query = { email };
-        if (jobId) {
-            query.jobId = jobId;
-        } else {
-            query.jobId = { $exists: false }; // Or null depending on how it's stored, checking both logic
+        console.log('--- NEW APPLICATION ATTEMPT ---');
+        console.log('User:', fullName, `(${email})`);
+        console.log('Job ID:', jobId || 'General');
+
+        // Verify required fields
+        if (!fullName || !email || !phone) {
+            return res.status(400).json({ success: false, message: 'Full Name, Email, and Phone are required.' });
         }
         
+        // Check for duplicate application
         const existingApp = await Application.findOne({ email, jobId: jobId || null });
         if (existingApp) {
-            return res.status(400).json({ success: false, message: 'You have already applied for this job.' });
+            console.warn(`Duplicate application blocked for ${email} on Job ${jobId}`);
+            return res.status(400).json({ 
+                success: false, 
+                message: 'You have already applied for this position with this email. Please use a different email if you need to re-apply.' 
+            });
         }
 
         // Handle file upload manually if needed or via multer in the route
         const resumeUrl = req.file ? req.file.location : null;
-        console.log('--- NEW APPLICATION SUBMISSION ---');
-        console.log('Resume Link:', resumeUrl);
+        console.log('Resume Link:', resumeUrl || 'No resume uploaded');
         
         const newApp = await Application.create({
             jobId: jobId || null, fullName, email, phone, qualification, experience, resumeUrl
         });
 
+        console.log('Application saved to DB');
         res.status(201).json({ success: true, message: 'Application submitted successfully', application: newApp });
     } catch (error) {
         res.status(500).json({ message: 'Error submitting application', error: error.message });
@@ -70,7 +76,7 @@ exports.updateApplicationStatus = async (req, res) => {
         const application = await Application.findByIdAndUpdate(
             req.params.id, 
             { status }, 
-            { new: true, runValidators: true }
+            { returnDocument: 'after', runValidators: true }
         ).populate('jobId', 'title');
 
         if (!application) {

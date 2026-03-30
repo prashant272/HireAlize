@@ -10,7 +10,7 @@ const ProcessPreview = () => {
       label: 'Strategy'
     },
     {
-      title: 'Talent Sourcing & Screening',
+      title: 'Talent Sourcing',
       desc: 'We source relevant candidates and conduct initial screening to shortlist suitable profiles.',
       icon: <UserCheck size={28} />,
       label: 'Sourcing'

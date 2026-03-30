@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Instagram, Linkedin, Twitter, Facebook, ChevronRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Linkedin, Facebook, ChevronRight } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,10 +14,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { Icon: Linkedin, href: '#', color: 'text-[#0077b5] border-[#0077b5]/30 bg-[#0077b5]/5 hover:bg-[#0077b5] hover:text-white' },
-    { Icon: Twitter, href: '#', color: 'text-white border-white/30 bg-white/5 hover:bg-white hover:text-black' },
-    { Icon: Facebook, href: '#', color: 'text-[#1877F2] border-[#1877F2]/30 bg-[#1877F2]/5 hover:bg-[#1877F2] hover:text-white' },
-    { Icon: Instagram, href: '#', color: 'text-[#E4405F] border-[#E4405F]/30 bg-[#E4405F]/5 hover:bg-[#E4405F] hover:text-white' },
+    { Icon: Linkedin, href: 'https://www.linkedin.com/company/hire-alize-consultant/', color: 'text-[#0077b5] border-[#0077b5]/30 bg-[#0077b5]/5 hover:bg-[#0077b5] hover:text-white' },
+    { Icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61576537977320', color: 'text-[#1877F2] border-[#1877F2]/30 bg-[#1877F2]/5 hover:bg-[#1877F2] hover:text-white' },
+    { Icon: Instagram, href: 'https://www.instagram.com/hirealize/', color: 'text-[#E4405F] border-[#E4405F]/30 bg-[#E4405F]/5 hover:bg-[#E4405F] hover:text-white' },
   ];
 
   const contactItems = [

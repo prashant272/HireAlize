@@ -11,10 +11,10 @@ const ServicesPreview = () => {
   ];
 
   const candidateServices = [
-    { title: 'Resume Building', desc: 'Professional resume support to highlight your skills and experience effectively.', icon: <FileText size={22} />, tag: 'Branding' },
-    { title: 'Interview Preparation', desc: 'Guidance and tips to help you confidently crack interviews.', icon: <GraduationCap size={22} />, tag: 'Strategy' },
+    { title: 'Resume Building', desc: 'Professional resume support to highlight your skills and experience effectively.', icon: <FileText size={22} />, tag: 'Profile' },
+    { title: 'Interview Preparation', desc: 'Guidance and tips to help you confidently crack interviews.', icon: <GraduationCap size={22} />, tag: 'Preparation' },
     { title: 'Career Guidance', desc: 'Helping you choose the right opportunities based on your skills and goals.', icon: <Award size={22} />, tag: 'Growth' },
-    { title: 'Profile Shortlisting', desc: 'Get matched with suitable job roles based on your experience and preferences.', icon: <MapPin size={22} />, tag: 'Mobility' },
+    { title: 'Profile Shortlisting', desc: 'Get matched with suitable job roles based on your experience and preferences.', icon: <MapPin size={22} />, tag: 'Opportunities' },
   ];
 
   const ServiceCard = ({ service }) => (

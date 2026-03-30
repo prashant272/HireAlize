@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageCircle, Linkedin, Facebook, Twitter, Instagram, Sparkles, X, Upload, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageCircle, Linkedin, Facebook, Twitter, Instagram, Sparkles, X, Upload, CheckCircle, ChevronDown } from 'lucide-react';
 import api from '../api/axios';
 
 const Contact = () => {
@@ -128,15 +128,20 @@ const Contact = () => {
                                     
                                     <div className="space-y-2 md:space-y-3">
                                         <label className="text-[10px] font-black text-orange-400/80 uppercase tracking-[0.3em] pl-1">Employer/Candidate</label>
-                                        <select 
-                                            name="type" 
-                                            value={formData.type} 
-                                            onChange={handleInputChange} 
-                                            className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl px-5 md:px-6 py-3 md:py-4 text-white focus:border-orange-500 focus:bg-white/10 outline-none transition-all font-medium text-xs md:text-sm appearance-none cursor-pointer"
-                                        >
-                                            <option value="Employer" className="bg-[#020617]">Employer</option>
-                                            <option value="Candidate" className="bg-[#020617]">Candidate</option>
-                                        </select>
+                                        <div className="relative">
+                                            <select 
+                                                name="type" 
+                                                value={formData.type} 
+                                                onChange={handleInputChange} 
+                                                className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl px-5 md:px-6 py-3 md:py-4 text-white focus:border-orange-500 focus:bg-white/10 outline-none transition-all font-medium text-xs md:text-sm appearance-none cursor-pointer pr-12"
+                                            >
+                                                <option value="Employer" className="bg-[#020617]">Employer</option>
+                                                <option value="Candidate" className="bg-[#020617]">Candidate</option>
+                                            </select>
+                                            <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-orange-400/60 transition-transform group-focus-within:rotate-180">
+                                                <ChevronDown size={18} />
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">

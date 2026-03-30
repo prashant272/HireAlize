@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Cpu, Building2, Landmark, ShoppingCart,
   Settings, HeartPulse, Microscope, Plane,
@@ -30,7 +31,7 @@ const IndustriesGrid = () => {
         <div className="text-center mb-12 md:mb-20 animate-fade-in-up">
           <div className="flex items-center justify-center space-x-4 mb-6">
             <div className="h-px w-8 bg-orange-500/40"></div>
-            <span className="text-orange-400 text-[11px] font-bold uppercase tracking-[0.5em]">Industries We Serve</span>
+            <span className="text-orange-400 text-[11px] font-bold uppercase tracking-[0.5em]">Our Coverage </span>
             <div className="h-px w-8 bg-orange-500/40"></div>
           </div>
           <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-4 leading-tight tracking-tight">
@@ -73,7 +74,9 @@ const IndustriesGrid = () => {
         <div className="mt-16 text-center animate-fade-in-up">
           <p className="text-white/40 text-xs font-medium uppercase tracking-[0.3em]">
             Don't see your industry?{' '}
-            <span className="text-orange-400 underline cursor-pointer hover:text-white transition-colors">Connect with us</span>{' '}
+            <Link to="/contact" className="text-orange-400 underline cursor-pointer hover:text-white transition-colors">
+              Connect with us
+            </Link>{' '}
             for custom solutions.
           </p>
         </div>

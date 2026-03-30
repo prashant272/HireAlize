@@ -15,6 +15,7 @@ import AdminLogin from './pages/AdminLogin';
 import AdminRoute from './components/AdminRoute';
 import FloatingActions from './components/FloatingActions';
 import ScrollToTop from './components/ScrollToTop';
+import HireModal from './components/HireModal';
 
 const AppContent = () => {
   const location = useLocation();
@@ -43,6 +44,7 @@ const AppContent = () => {
       </main>
       {!isAdminRoute && <Footer />}
       {!isAdminRoute && <FloatingActions />}
+      {!isAdminRoute && <HireModal />}
     </div>
   );
 };

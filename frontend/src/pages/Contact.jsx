@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, MessageCircle, Linkedin, Facebook, Twitter, Instagram, Sparkles, X, Upload, CheckCircle, ChevronDown } from 'lucide-react';
 import api from '../api/axios';
+import SEO from '../components/SEO';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ type: 'Employer', name: '', email: '', phone: '', message: '' });
@@ -66,6 +67,12 @@ const Contact = () => {
 
     return (
         <div className="min-h-screen bg-[#020617] font-inter">
+            <SEO 
+                title="Contact Hirealize | Partner with the Best Recruitment Consultancy"
+                description="Get in touch with Hirealize Consultants. Whether you're an employer looking for top talent or a candidate seeking your next role, our team is here to help."
+                keywords="contact recruitment agency, hiring inquiry, job seeker support, HR consultancy contact, gurugram recruitment firm"
+                canonical="https://www.hirealize.in/contact"
+            />
             <section className="pt-20 md:pt-32 pb-16 md:pb-24 relative overflow-hidden">
                 {/* Background Effects */}
                 <div className="absolute top-0 left-0 w-full h-full pointer-events-none">

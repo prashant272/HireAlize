@@ -1,5 +1,6 @@
 import React from 'react';
 import { Target, Eye, Rocket, CheckCircle2, Award, Users, Search, Briefcase } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const About = () => {
     const stats = [
@@ -34,6 +35,12 @@ const About = () => {
 
     return (
         <section className="pt-20 md:pt-32 pb-16 md:pb-24 bg-[#020617] relative overflow-hidden min-h-screen font-inter">
+            <SEO 
+                title="About Hirealize | Our Mission, Vision & Recruitment Expertise"
+                description="Learn about Hirealize Consultants, our mission to empower organizations with top talent, and our expert team of recruitment professionals."
+                keywords="about hirealize, recruitment mission, hiring expertise, talent acquisition team, recruitment firm india"
+                canonical="https://www.hirealize.in/about"
+            />
             {/* Premium Background Effects */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
                 <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-orange-600/5 rounded-full blur-[120px] animate-pulse-slow"></div>

@@ -31,6 +31,7 @@ const AdminLogin = () => {
     return (
         <div className="min-h-screen bg-[#020617] flex items-center justify-center p-4 font-inter relative overflow-hidden">
             {/* Background Effects */}
+            <meta name="robots" content="noindex, nofollow" />
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
                 <div className="absolute top-1/4 -right-32 w-[600px] h-[600px] bg-orange-600/10 rounded-full blur-[140px] animate-pulse-slow"></div>
                 <div className="absolute bottom-1/4 -left-32 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[140px] animate-pulse-slow delay-1000"></div>

@@ -11,9 +11,16 @@ import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
 import HomeCTA from '../components/HomeCTA';
 
+import SEO from '../components/SEO';
+
 const Home = () => {
   return (
     <div className="bg-dark-900">
+      <SEO 
+        title="Best Recruitment & HR Solutions in India"
+        description="Hirealize Consultants connects ambitious companies with high-performing professionals. Expert recruitment, executive search, and staffing solutions across India."
+        keywords="recruitment agency india, HR solutions, executive search, hiring consultants, staffing services, talent acquisition"
+      />
       <Hero />
       <PartnerStrip />
       <AboutPreview />

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, UserCheck, CheckCircle, ClipboardCheck, Zap, ArrowRight, X, Send } from 'lucide-react';
 import api from '../api/axios';
+import SEO from '../components/SEO';
 
 const Process = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -73,6 +74,12 @@ const Process = () => {
 
   return (
     <div className="min-h-screen bg-[#020617] font-inter">
+      <SEO 
+        title="Our Recruitment Process | How We Find the Best Talent"
+        description="Discover our streamlined 4-step recruitment process. From understanding requirements to final closure, we ensure a seamless hiring experience for partners and candidates."
+        keywords="recruitment process, hiring workflow, talent sourcing, interview coordination, offer management"
+        canonical="https://www.hirealize.in/process"
+      />
       <section className="pt-20 md:pt-32 pb-16 md:pb-24 bg-[#020617] relative overflow-hidden">
         {/* Background Tech Pulse */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none">

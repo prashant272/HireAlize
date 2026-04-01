@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Shield, FileText, CheckCircle } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Legal = () => {
     const { type } = useParams();
@@ -27,6 +28,12 @@ const Legal = () => {
 
     return (
     <section className="pt-40 pb-24 min-h-screen bg-dark-900 relative">
+      <SEO 
+        title={`${currentContent.title} | Hirealize Legal`}
+        description={`Read the ${currentContent.title} of Hirealize Consultants. We are committed to transparency and compliance in our recruitment services.`}
+        keywords="legal, privacy policy, terms of service, disclaimer, hirealize compliance"
+        canonical={`https://www.hirealize.in/legal/${type || 'privacy'}`}
+      />
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-1/4 -right-20 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px]"></div>
       </div>

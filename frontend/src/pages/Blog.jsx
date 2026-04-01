@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Clock, User, ArrowRight, Rss, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import api from '../api/axios';
+import SEO from '../components/SEO';
 
 const Blog = () => {
     const [posts, setPosts] = useState([]);
@@ -39,6 +40,12 @@ const Blog = () => {
     };
     return (
     <section className="pt-32 pb-24 bg-[#020617] relative overflow-hidden min-h-screen font-inter">
+      <SEO 
+        title="Hirealize Insights | Recruitment Tips & Industry Trends"
+        description="Stay updated with the latest recruitment insights, hiring tips, and industry trends. Our blog provides expert advice for both businesses and professionals."
+        keywords="recruitment blog, hiring tips, industry trends, HR insights, career advice, talent management blog"
+        canonical="https://www.hirealize.in/blog"
+      />
       {/* Background Tech Pulse */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-1/4 -right-32 w-[600px] h-[600px] bg-orange-600/5 rounded-full blur-[140px] animate-pulse-slow"></div>

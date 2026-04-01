@@ -144,6 +144,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#020617] text-white flex font-inter">
+      <meta name="robots" content="noindex, nofollow" />
       
       {/* Mobile Sidebar Toggle Header (Sticky) */}
       <div className="md:hidden fixed top-0 left-0 w-full z-40 bg-[#020617] border-b border-white/10 p-4 flex justify-between items-center h-16">

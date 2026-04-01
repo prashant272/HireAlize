@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Briefcase, MapPin, Clock, Upload, Send, Search, X } from 'lucide-react';
 import api from '../api/axios';
+import SEO from '../components/SEO';
 
 const Jobs = () => {
   const [selectedJob, setSelectedJob] = useState(null);
@@ -84,6 +85,12 @@ const Jobs = () => {
 
   return (
     <section className="pt-20 md:pt-32 pb-24 bg-[#020617] relative overflow-hidden min-h-screen font-inter text-white">
+      <SEO 
+        title="Careers & Latest Job Openings | Find Your Dream Job"
+        description="Explore the latest job openings at Hirealize. Find career opportunities in sales, BFSI, corporate, and more. Apply now and take your next strategic career leap."
+        keywords="job openings, careers, hirealize jobs, recruitment portal, apply for jobs, find work india"
+        canonical="https://www.hirealize.in/jobs"
+      />
       {/* Background Effects */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] bg-orange-600/5 rounded-full blur-[140px] animate-pulse-slow"></div>

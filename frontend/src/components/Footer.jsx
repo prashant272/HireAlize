@@ -34,8 +34,8 @@ const Footer = () => {
     {
       icon: Mail,
       label: 'Mail Us',
-      text: 'hirealize@outlook.in',
-      href: 'mailto:hirealize@outlook.in',
+      text: 'business@hirealize.in',
+      href: 'mailto:business@hirealize.in',
     },
   ];
 

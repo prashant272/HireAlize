@@ -60,7 +60,7 @@ const Contact = () => {
         {
             icon: <Mail size={24} />,
             title: 'Email',
-            details: ['hirealize@outlook.in', 'Official Channel for Partnerships'],
+            details: ['business@hirealize.in', 'Official Channel for Partnerships'],
             color: 'from-purple-600 to-purple-400'
         }
     ];

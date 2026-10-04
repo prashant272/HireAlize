@@ -4,7 +4,10 @@ const PartnerStrip = () => {
     const partners = [
         'Revolt Motors', 'DB Schenker', 'Godrej Consumers', 'Jindal Stainless',
         'Johnson Controls', 'Singhi & Co', 'Legrand India', 'Spacewood Furnishers',
-        'Concentrix', 'Policy Bazar', 'Tele Performance'
+        'Concentrix', 'Policy Bazar', 'Tele Performance',
+        'Solveaxis', 'Kokan NGO', 'Talme Technologies', 'Codeyoung',
+        'Finvvritti', 'Theeta Electricals', 'Vastu Housing Finance',
+        'Expertvuw', 'Bog Trading', 'Spice Money'
     ];
 
     return (
